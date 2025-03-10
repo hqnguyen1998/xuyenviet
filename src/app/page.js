@@ -70,7 +70,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                User Management
+                Quản Lý Danh Sách QĐ Xuyên Việt
             </motion.h1>
 
             {/* Filters */}
@@ -118,9 +118,9 @@ export default function Home() {
                             <tr key={user._id} className="border-b border-gray-600 hover:bg-gray-700">
                                 <td className="border p-3">{user.zaloName}</td>
                                 <td className="border p-3">{user.ingameName}</td>
-                                <td className="border p-3">
-                                    <button className="bg-green-500 text-white p-2 rounded-md mr-2" onClick={() => editUser(user)}>Edit</button>
-                                    <button className="bg-red-500 text-white p-2 rounded-md" onClick={() => setConfirmDelete(user._id)}>Delete</button>
+                                <td className="border p-3 flex gap-2">
+                                    <button className="bg-green-500 text-white p-2 rounded-md mr-2" onClick={() => editUser(user)}>Chỉnh sửa</button>
+                                    <button className="bg-red-500 text-white p-2 rounded-md" onClick={() => setConfirmDelete(user._id)}>Xoá</button>
                                 </td>
                             </tr>
                         ))}
