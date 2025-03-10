@@ -10,8 +10,8 @@ export async function GET() {
 
 export async function POST(req) {
   await connectToDatabase();
-  const { name, email } = await req.json();
-  const newUser = new User({ name, email });
+  const { zaloName, ingameName } = await req.json();
+  const newUser = new User({ zaloName, ingameName });
   await newUser.save();
   return NextResponse.json(newUser, { status: 201 });
 }
