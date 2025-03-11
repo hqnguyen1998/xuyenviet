@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+
+/* Light Mode */
+html {
+  background-color: #f9fafb; /* Light gray */
+  color: #1f2937; /* Dark text */
+}
+
+/* Dark Mode */
+html.dark {
+  background-color: #111827; /* Dark background */
+  color: #ffffff; /* White text */
+}
+
+/* Fix Table & Form Background */
+.bg-light {
+  background-color: white;
+}
+
+.bg-dark {
+  background-color: #1f2937; /* Tailwind gray-800 */
+}
