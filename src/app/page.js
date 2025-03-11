@@ -9,7 +9,9 @@ export default function Home() {
     const [zaloName, setZaloName] = useState("");
     const [ingameName, setIngameName] = useState("");
     const [editId, setEditId] = useState(null);
-    const [confirmDelete, setConfirmDelete] = useState(null); // Store user ID for confirmation
+    const [confirmDelete, setConfirmDelete] = useState(null);
+    const [filterZalo, setFilterZalo] = useState(""); // Filter for Tên Zalo
+    const [filterIngame, setFilterIngame] = useState(""); // Filter for Tên Ingame
 
     useEffect(() => {
         fetchUsers();
@@ -44,16 +46,22 @@ export default function Home() {
     }
 
     async function deleteUser(id) {
-        await fetch(`/api/users/${id}`, { method: "DELETE" });
-        fetchUsers();
-        setConfirmDelete(null);
-    }
+      await fetch(`/api/users/${id}`, { method: "DELETE" });
+      fetchUsers();
+      setConfirmDelete(null);
+  }
 
     function editUser(user) {
         setEditId(user._id);
         setZaloName(user.zaloName);
         setIngameName(user.ingameName);
     }
+
+    // Apply Filters
+    const filteredUsers = users.filter(user => 
+        user.zaloName.toLowerCase().includes(filterZalo.toLowerCase()) &&
+        user.ingameName.toLowerCase().includes(filterIngame.toLowerCase())
+    );
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -68,6 +76,20 @@ export default function Home() {
                     Quản Lý Danh Sách QĐ Xuyên Việt
                 </motion.h1>
                 <ThemeToggle />
+            </div>
+
+            {/* Filters */}
+            <div className="flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0 mb-6">
+                <input 
+                    className="border p-2 rounded-md bg-gray-700 text-white w-full md:w-1/2"
+                    type="text" placeholder="Tìm theo Tên Zalo"
+                    value={filterZalo} onChange={(e) => setFilterZalo(e.target.value)}
+                />
+                <input 
+                    className="border p-2 rounded-md bg-gray-700 text-white w-full md:w-1/2"
+                    type="text" placeholder="Tìm theo Tên Ingame"
+                    value={filterIngame} onChange={(e) => setFilterIngame(e.target.value)}
+                />
             </div>
 
             {/* Add/Edit User Form */}
@@ -97,22 +119,21 @@ export default function Home() {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user) => (
+                        {filteredUsers.map((user) => (
                             <tr key={user._id} className="border-b border-gray-600 hover:bg-gray-700 dark:hover:bg-gray-800">
                                 <td className="border p-3">{user.zaloName}</td>
                                 <td className="border p-3">{user.ingameName}</td>
                                 <td className="border p-3">
                                     <button className="bg-green-500 text-white p-2 rounded-md mr-2" onClick={() => editUser(user)}>Sửa</button>
-                                    <button className="bg-red-500 text-white p-2 rounded-md" onClick={() => setConfirmDelete(user._id)}>Xóa</button>
-                                </td>
+                                    <button className="bg-red-500 text-white p-2 rounded-md" onClick={() => setConfirmDelete(user._id)}>Xóa</button>                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
 
-            {/* Delete Confirmation Popup */}
-            <AnimatePresence>
+               {/* Delete Confirmation Popup */}
+               <AnimatePresence>
                 {confirmDelete && (
                     <motion.div 
                         className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
