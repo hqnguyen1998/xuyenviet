@@ -113,14 +113,16 @@ export default function Home() {
                 <table className="w-full border border-gray-700 rounded-lg shadow-md bg-gray-800 text-white dark:bg-gray-900">
                     <thead className="bg-gray-700 dark:bg-gray-800">
                         <tr>
+                            <th className="border p-3 text-left">STT</th>
                             <th className="border p-3 text-left">Tên Zalo</th>
                             <th className="border p-3 text-left">Tên Ingame</th>
                             <th className="border p-3 text-left">Hành Động</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredUsers.map((user) => (
+                        {filteredUsers.map((user, i) => (
                             <tr key={user._id} className="border-b border-gray-600 hover:bg-gray-700 dark:hover:bg-gray-800">
+                                <th className="border p-3">{i + 1}</th>
                                 <td className="border p-3">{user.zaloName}</td>
                                 <td className="border p-3">{user.ingameName}</td>
                                 <td className="border p-3">
