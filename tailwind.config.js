@@ -1,13 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class', // Ensure dark mode works
+  darkMode: 'class',
   content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './src/styles/globals.css',
+    './src/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        glass: 'rgba(255, 255, 255, 0.1)',
+      },
+      backdropBlur: {
+        glass: '10px',
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
