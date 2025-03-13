@@ -109,31 +109,7 @@ export default function Home() {
         </div>
       </motion.div>
 
-        {/* Delete Confirmation Popup */}
-        <AnimatePresence>
-                {confirmDelete && (
-                    <motion.div 
-                        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                    >
-                        <motion.div 
-                            className="bg-gray-800 p-6 rounded-md shadow-lg"
-                            initial={{ scale: 0.8 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0.8 }}
-                        >
-                            <h2 className="text-white text-lg font-bold mb-4">Bạn có chắc chắn?</h2>
-                            <p className="text-gray-400 mb-6">Bạn có chắc muốn xóa người dùng này? Hành động này không thể hoàn tác.</p>
-                            <div className="flex justify-end space-x-4">
-                                <button className="bg-gray-500 text-white p-2 rounded-md" onClick={() => setConfirmDelete(null)}>Hủy</button>
-                                <button className="bg-red-500 text-white p-2 rounded-md" onClick={() => deleteUser(confirmDelete)}>Xóa</button>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+     
 
       {/* Users Table */}
       <div className='overflow-x-auto w-full max-w-4xl'>
@@ -185,7 +161,31 @@ export default function Home() {
 
         
       </div>
-    
+       {/* Delete Confirmation Popup */}
+       <AnimatePresence>
+                {confirmDelete && (
+                    <motion.div 
+                        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                    >
+                        <motion.div 
+                            className="bg-gray-800 p-6 rounded-md shadow-lg"
+                            initial={{ scale: 0.8 }}
+                            animate={{ scale: 1 }}
+                            exit={{ scale: 0.8 }}
+                        >
+                            <h2 className="text-white text-lg font-bold mb-4">Bạn có chắc chắn?</h2>
+                            <p className="text-gray-400 mb-6">Bạn có chắc muốn xóa người dùng này? Hành động này không thể hoàn tác.</p>
+                            <div className="flex justify-end space-x-4">
+                                <button className="bg-gray-500 text-white p-2 rounded-md" onClick={() => setConfirmDelete(null)}>Hủy</button>
+                                <button className="bg-red-500 text-white p-2 rounded-md" onClick={() => deleteUser(confirmDelete)}>Xóa</button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
        
     </div>
   );
